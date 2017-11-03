@@ -141,10 +141,9 @@ input:focus {
     min-width: 300px;
 }
 
-.btn-primary {
-    background-color: #0275d8;
-    border-color: #0275d8;
-  }
+.button-moves {
+    margin-top:10px;
+}
 
 .badge-pokemoves {
     font-size:16px;
