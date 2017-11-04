@@ -20,7 +20,6 @@ class PokemonItem extends Component {
           </Link>
       </div>
 
-
     )
   }
 }

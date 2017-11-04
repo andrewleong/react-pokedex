@@ -7,10 +7,13 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    this.state = { pokemons: [] }
+    this.state = { pokemons: '' }
   }
 
   render() {
+    if(!this.state.pokemons){
+      return <div className="loading">Loading...</div>
+    }
 
     return (
       <div>
@@ -20,12 +23,8 @@ class App extends Component {
   }
 
   componentDidMount(){
-    const request = axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=151`)
+     axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=151`)
     .then( res => this.setState({ pokemons: res.data.results }) );
-
-    if(!request){
-      return <div className="loading">Loading...</div>
-    }
   }
 }
 

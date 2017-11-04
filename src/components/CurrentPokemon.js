@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import _ from 'lodash';
-
 
 
 class CurrentPokemon extends Component {
@@ -9,7 +7,7 @@ class CurrentPokemon extends Component {
     super(props);
     this.state = { pokemon: '', pokemonSpecies: '', pokemonEvolution: '' }
   }
-  // http://pokeapi.salestock.net/api/v2/pokemon-species/1/
+
   componentDidMount(){
     axios.get(`https://pokeapi.co/api/v2/pokemon/${this.props.match.params.id}`)
     .then( res => this.setState({ pokemon: res.data }) )
@@ -38,7 +36,6 @@ class CurrentPokemon extends Component {
         } else {
             pokeType2 = null;
         }
-      let pokeHpName = pokemon.stats[5].stat.name;
       let pokeHp = pokemon.stats[5].base_stat;
       let pokeAttackName = pokemon.stats[4].stat.name;
       let pokeAttack = pokemon.stats[4].base_stat;
@@ -114,10 +111,6 @@ class CurrentPokemon extends Component {
 
       let pokeMoves = pokemon.moves.map( (item) => item.move.name);
 
-      // console.log(pokemonEvolution.chain.evolves_to[0].evolves_to[0].species.url.split("/").slice(-2)[0]);
-      console.log(pokeEvolution1id);
-      console.log(pokeEvolution2id);
-      console.log(pokeEvolution3id);
         return (
           <div className="content-container row">
               <div className="col col-md-4">
@@ -175,27 +168,27 @@ class CurrentPokemon extends Component {
                   <div className="col-md-12">
                       <div className="card card-poke-evolution">
                          <div className="card-block"><span className="font">Evolution: </span>
-                             <div className="row" style={{height:"20vh"}}>
+                             <div className="row row-height">
                                 <div className="col-md-3">
                                   <div><img className="img-responsive" src={`/sprites/pokemon/model/${pokeEvolution1id}.png`} alt="" /></div>
-                                  <div style={{textAlign:"center"}}>{pokeEvolution1}</div>
+                                  <div className="pokeEvolution-text">{pokeEvolution1}</div>
                                 </div>
 
-                                <div className="col-md-1"><i className="fa fa-arrow-circle-right fa-2x" style={{lineHeight: "200px",color:"#fff"}} aria-hidden="true"></i></div>
+                                <div className="col-md-1"><i className="fa fa-arrow-circle-right fa-2x arrow-icon" aria-hidden="true"></i></div>
 
                                 <div className="col-md-3">
                                   <div><img className="img-responsive" src={`/sprites/pokemon/model/${pokeEvolution2id}.png`} alt="" /></div>
-                                  <div style={{textAlign:"center"}}>{pokeEvolution2}</div>
+                                  <div className="pokeEvolution-text">{pokeEvolution2}</div>
                                 </div>
 
                               {pokeEvolution3 !== null ?
-                                <div className="col-md-1"><i className="fa fa-arrow-circle-right fa-2x" style={{lineHeight: "200px",color:"#fff"}} aria-hidden="true"></i></div>
+                                <div className="col-md-1"><i className="fa fa-arrow-circle-right fa-2x arrow-icon" aria-hidden="true"></i></div>
                               : null }
 
                              {pokeEvolution3 !== null ?
                                 <div className="col-md-3">
                                   <div><img className="img-responsive" src={`/sprites/pokemon/model/${pokeEvolution3id}.png`} alt="" /></div>
-                                  <div style={{textAlign:"center"}}>{pokeEvolution3}</div>
+                                  <div className="pokeEvolution-text">{pokeEvolution3}</div>
                                 </div>
                               : null }
                              </div>
@@ -249,36 +242,8 @@ class CurrentPokemon extends Component {
         return <div className="loading">Loading...</div>
     }
 
-    // <div className="col-md-12">
-    //     <div className="card card-poke-evolution">
-    //         { pokeEvolution1 || pokeEvolution2 || pokeEvolution3 ? <div className="card-block"><span className="font">Evolution: </span> {`${pokeEvolution1}`} {`${pokeEvolution2} |`} {`${pokeEvolution3}`}  </div> : null }
-    //         { pokeEvolutionLevel1 || pokeEvolutionLevel2 ? <div className="card-block"><span className="font">Evolve level: </span> {`${pokeEvolutionLevel1} |`} {`${pokeEvolutionLevel2}`}</div> : null }
-    //         { pokeEvolutionMethod1 || pokeEvolutionMethod2 ? <div className="card-block"><span className="font">Evolve method: </span> {`stage #1 -> stage #2: ${pokeEvolutionMethod1} |`} {`stage #2 -> stage #3: ${pokeEvolutionMethod2}`} </div> : null }
-    //     </div>
-    // </div>
-
-    //
-    // let pokeEvolution = pokemon.evolutions;
-    // let pokeEvolutionTo = [...new Set(pokeEvolution.map( (item)=> item.to ) )];
-    // let pokeEvolutionLevel = [...new Set(pokeEvolution.map( (item)=> item.level ) )];
-    // let pokeEvolutionMethod = [...new Set(pokeEvolution.map( (item)=> item.method ) )];
-    // let pokeMoves = pokemon.moves.map( (item) => item.name);
-    //
-    // if(pokeEvolution.length === 0){
-    //     pokeEvolutionTo = null;
-    //     pokeEvolutionLevel = null;
-    //     pokeEvolutionMethod = null;
-    // }else if(!pokeEvolutionTo){
-    //     pokeEvolutionTo = null;
-    // }else if (typeof pokeEvolutionLevel[0] === 'undefined' || pokeEvolutionLevel === null){
-    //     pokeEvolutionLevel = null;
-    // }
-
-
-
     return (
         <div>{this.renderCurrentPokemon()}</div>
-
     );
   }
 

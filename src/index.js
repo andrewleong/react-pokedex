@@ -13,7 +13,6 @@ import CurrentPokemon from './components/CurrentPokemon';
 
 
 ReactDOM.render(
-
       <BrowserRouter>
         <div>
           <Route exact path="/" component={App} />

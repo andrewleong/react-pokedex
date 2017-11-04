@@ -22,6 +22,10 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
+.row-height {
+  height: 20vh;
+}
+
 span.font {
   font-family: 'Cairo', sans-serif;
   font-size: 22px;
@@ -148,4 +152,13 @@ input:focus {
 .badge-pokemoves {
     font-size:16px;
     margin:5px;
+}
+
+.pokeEvolution-text {
+  text-align: center;
+}
+
+.arrow-icon {
+  line-height: 200px;
+  color: #fff;
 }
